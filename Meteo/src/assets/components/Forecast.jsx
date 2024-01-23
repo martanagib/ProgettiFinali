@@ -1,6 +1,6 @@
 //importazione di tutti cio di cui ho bisogno per questo component
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -65,9 +65,12 @@ const Forecast = () => {
       {citta && citta.list && (
         <div>
           <h2>{citta?.city.name}</h2>
+          <Container>
           {dayByDay().map((dayData, index) => (
             <div key={index}>
+              <Row>
               <h3>{dayData.day}</h3>
+              </Row>
               {dayData.forecasts.map((cit, i) => (
                 <div key={i}>
                   <div className="descrizione">
@@ -109,6 +112,7 @@ const Forecast = () => {
               ))}
             </div>
           ))}
+          </ Container>
           <div className="centro">
             <Link className="text-white" to="/">
               Vai alla previsioni di oggi
