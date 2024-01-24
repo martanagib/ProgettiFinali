@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaArrowRight } from "react-icons/fa";
 
-
 /*component che, attraverso l'endpoint fornito e i dati che gli vengono mandati dallo stato del search, recupara i dati relativi alle previsioni di oggi. i dati ricevuti verranno utilizzati per popolare la pagina
  */
 const Results = () => {
@@ -56,53 +55,37 @@ const Results = () => {
               Vai alle previsioni dei prossimi giorni
               <FaArrowRight />
             </Link>
-          
           </div>
           <div>
-            <h2>{city.name} {city.main.temp}°C</h2>
+            <h2>
+              {city.name} {city.main.temp}°C
+            </h2>
           </div>
           <div className="descrizione">
             <h4>{city.weather[0]?.main}</h4>
             <p>{city.weather[0]?.description}</p>
           </div>
-          <div className="cardDiv d-flex justify-content-evenly">
-            <div className="spazi">
-              <div className='col-10 d-flex flex-column prova'>
-              <Card className="carine">
-                <Card.Body>
-                  <Card.Title>Wind Speed</Card.Title>
-                  <Card.Text>{city.wind.speed} km/h</Card.Text>
-                </Card.Body>
-              </Card>
-              </div>
-              <div className='col-6'>
-              <Card  className="carine">
-                <Card.Body>
-                  <Card.Title>Humidity</Card.Title>
-                  <Card.Text>{city.main.humidity}%</Card.Text>
-                </Card.Body>
-              </Card>
+          <div className="cardDiv">
+            <div className="spazi row">
+              <div className="d-flex justify-content-evenly prova">
+                <div className="carine col-12 col-md-6">
+                  <p>Humidity</p>
+                  <p>{city.main.humidity}%</p>
+                </div>
+                <div className="carine col-12 col-md-6">
+                  <p>Wind Speed</p>
+                  <p>{city.wind.speed}</p>
+                </div>
+                <div className="carine col-12 col-md-6">
+                  <p>Temp. Max</p>
+                  <p>{city.main.temp_max}°C</p>
+                </div>
+                <div className="carine col-12 col-md-6">
+                  <p>Temp. Min</p>
+                  <p>{city.main.temp_min}°C</p>
+                </div>
               </div>
             </div>
-            <div className="spazi">
-              <Card style={{ width: "18rem" }} className="carine">
-                <Card.Body>
-                  <Card.Title>Temp. Max</Card.Title>
-                  <Card.Text>{city.main.temp_max}°c</Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "18rem" }} className="carine">
-                <Card.Body>
-                  <Card.Title>Temp. Min</Card.Title>
-                  <Card.Text>{city.main.temp_min}°c</Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
-          <div className="centro">
-            <Link to="/Forecast" className="text-white">
-              Vai alle previsioni dei prossimi giorni
-            </Link>
           </div>
         </div>
       )}
