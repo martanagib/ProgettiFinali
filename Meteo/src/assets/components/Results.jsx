@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaArrowRight } from "react-icons/fa";
+
 
 /*component che, attraverso l'endpoint fornito e i dati che gli vengono mandati dallo stato del search, recupara i dati relativi alle previsioni di oggi. i dati ricevuti verranno utilizzati per popolare la pagina
  */
@@ -48,8 +50,13 @@ const Results = () => {
     <>
       {city && (
         <div>
-          <div>
-            <p>{printDate}</p>
+          <div className="d-flex justify-content-around">
+            <h3>{printDate}</h3>
+            <Link to="/Forecast" className="text-white">
+              Vai alle previsioni dei prossimi giorni
+              <FaArrowRight />
+            </Link>
+          
           </div>
           <div>
             <h2>{city.name} {city.main.temp}°C</h2>
@@ -58,20 +65,24 @@ const Results = () => {
             <h4>{city.weather[0]?.main}</h4>
             <p>{city.weather[0]?.description}</p>
           </div>
-          <div className="cardDiv gap-2">
+          <div className="cardDiv d-flex justify-content-evenly">
             <div className="spazi">
-              <Card style={{ width: "18rem" }} className="carine">
+              <div className='col-10 d-flex flex-column prova'>
+              <Card className="carine">
                 <Card.Body>
                   <Card.Title>Wind Speed</Card.Title>
                   <Card.Text>{city.wind.speed} km/h</Card.Text>
                 </Card.Body>
               </Card>
-              <Card style={{ width: "18rem" }} className="carine">
+              </div>
+              <div className='col-6'>
+              <Card  className="carine">
                 <Card.Body>
                   <Card.Title>Humidity</Card.Title>
                   <Card.Text>{city.main.humidity}%</Card.Text>
                 </Card.Body>
               </Card>
+              </div>
             </div>
             <div className="spazi">
               <Card style={{ width: "18rem" }} className="carine">

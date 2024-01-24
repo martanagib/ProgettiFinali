@@ -1,8 +1,9 @@
 //importazione di tutti cio di cui ho bisogno per questo component
 import { useEffect, useState } from "react";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Container, Row} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 /*component che, attraverso l'endpoint fornito e i dati che gli vengono mandati dallo stato del search, recupara i dati relativi alle previsioni dei prossimi 5 giorni (ognuno dei quali diviso in fasce orarie ogni 3 ore).                         i dati ricevuti verranno utilizzati per popolare la pagina
  */
@@ -39,7 +40,7 @@ const Forecast = () => {
     if (search?.length > 2) fetchData();
   }, [search]);
 
-  //dal momento che l'API restituisce le previsioni con intervallo di 3 ore per ogni giorno, con questa funzione recupero i dati corrispondenti a 5 fasce orarie per ogni giorno, per un totale di 5 giorni a partire da domani
+  //dal momento che l'API restituisce le previsioni con intervallo di 3 ore per ogni giorno, con questa funzione recupero i dati corrispondenti a 8 fasce orarie per ogni giorno, per un totale di 3 giorni a partire da domani
   const dayByDay = () => {
     const groupedData = {};
 
@@ -52,7 +53,7 @@ const Forecast = () => {
       groupedData[day].push(forecast);
     });
     return Object.keys(groupedData)
-      .slice(1, 5)
+      .slice(1, 4)
       .map((day) => ({
         day,
         forecasts: groupedData[day],
@@ -64,65 +65,42 @@ const Forecast = () => {
     <>
       {citta && citta.list && (
         <div>
-          <h2>{citta?.city.name}</h2>
+          <h2 className='citta'>{citta?.city.name}</h2>
+          <div className="destra">
+          <Link className="text-white" to="/">
+              Vai alla previsioni di oggi
+              <FaArrowRight />
+            </Link>
+            </div>
           <Container>
             <Row>
-              <div>
+               <div>
           {dayByDay().map((dayData, index) => (
             <div key={index}>
               
-              <h3>{dayData.day}</h3>
-              
+              <h3 className="data">{dayData.day}</h3>
+              <div className='d-flex gap-2 justify-content-around'>
               {dayData.forecasts.map((cit, i) => (
                 
                 <div key={i}>
-                  <div className="">
+                  <div className="carine">
                     <p>{new Date(cit.dt * 1000).toLocaleTimeString()}</p>
-                    <h4>{cit.main.temp}°C</h4>
-                    <h4>{cit.weather[0].main}</h4>
+                    <p>{cit.main.temp}°C</p>
+                    <p>{cit.weather[0].main}</p>
                     <p>{cit.weather[0].description}</p>
-                  </div>
-                  
-                  <div>
-                   <Card style={{ width: "18rem" }} className="carine">
-                        <Card.Body>
-                          <Col className="">
-                          <Card.Title>Wind Speed</Card.Title>
-                          <Card.Text>{cit.wind.speed} km/h</Card.Text>
-                          </Col>
-                          <Col className="">
-                          <Card.Title>Humidity</Card.Title>
-                          <Card.Text>{cit.main.humidity}%</Card.Text>
-                          </Col>
-                          <Col className="">
-                          <Card.Title>Temp. Max</Card.Title>
-                          <Card.Text>{cit.main.temp_max}°C</Card.Text>
-                          </Col>
-                          <Col className="">
-                          <Card.Title>Temp. Min</Card.Title>
-                          <Card.Text>{cit.main.temp_min}°C</Card.Text>
-                          </Col>
-                        </Card.Body>
-                      </Card>
-                   
-                      
-                     
                     
                   </div>
-                </div>
+                
+                  </div>
                
               ))}
+              </div>
               </div>
             
           ))}
           </div>
             </Row>
           </ Container>
-          <div className="centro">
-            <Link className="text-white" to="/">
-              Vai alla previsioni di oggi
-            </Link>
-          </div>
         </div>
       )}
     </>

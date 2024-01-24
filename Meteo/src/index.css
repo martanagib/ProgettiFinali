@@ -3,20 +3,21 @@ body {
 }
 
 .carine {
-  margin: 5%;
+
   background-color:rgb(253, 242, 253);
    color: rgb(7, 23, 35);
    border: 1px solid rgb(0, 102, 176);
-   border-radius: 40px;
+   border-radius: 20px;
    font-weight: 700;
-   font-size: larger;
    opacity: 0.6;
+   text-align: center;
+   width:8rem
    
 
 }
 
 button {
-  color: rgb(0, 102, 176);
+  color: rgb(7, 23, 35);
   background-color:rgb(251, 231, 251);
   border: 1px solid rgb(0, 102, 176);
   border-radius: 40px;
@@ -26,6 +27,7 @@ button {
   text-align: center;
   font-weight: 600;
   font-size: larger;
+  opacity: 0.9;
 }
 
 input {
@@ -38,34 +40,33 @@ input {
   margin-left: 20%;
   font-weight: 600;
   font-size: larger;
-  
+ 
 }
 
 h2{
   text-align: center;
-  color:rgb(1, 68, 115);
+  color:rgb(7, 23, 35);
   font-weight: bolder;
   font-size: 2rem;
   background-color: rgb(251, 231, 251);
   margin-left: 35%;
   margin-right: 35%;
-  border-radius: 40px;
+  border-radius: 10px;
+  opacity: 0.6;
   
 }
 
-.cardDiv {
-  justify-content: center;
-  margin-top: -5%;
-}
+
 
 
 .descrizione{
   text-align: center;
-  color:rgb(1, 68, 115);
+  color:rgb(7, 23, 35);
   background-color: rgb(251, 231, 251);
   margin-left: 35%;
   margin-right: 35%;
   border-radius: 40px;
+  opacity:0.6
 
 
   
@@ -74,3 +75,20 @@ h2{
 .centro {
   text-align: center;
 }
+
+
+.destra {
+  margin-left: 77%;
+}
+
+@media (max-width: 767px) {
+  .results-container .cardDiv .spazi {
+    display: block;
+  }
+}
+
+
+.prova {
+  width:50%
+}
+
