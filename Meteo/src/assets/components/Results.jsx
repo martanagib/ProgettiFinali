@@ -52,7 +52,7 @@ const Results = () => {
             <p>{printDate}</p>
           </div>
           <div>
-            <h2>{city.name} {city.main.temp}°c</h2>
+            <h2>{city.name} {city.main.temp}°C</h2>
           </div>
           <div className="descrizione">
             <h4>{city.weather[0]?.main}</h4>
